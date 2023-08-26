@@ -18,7 +18,7 @@
 }
 
 .bg-gradient {
-  background: linear-gradient(to right, #00c3ff, #0072ff);
+  background: none;
 }
 
 /* Tilt Card */
@@ -29,10 +29,23 @@
 .Tilt-inner {
   transform-style: preserve-3d;
   padding: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 10px solid transparent;
+  background-clip: padding-box;
+  border-image: linear-gradient(
+    45deg,
+    #00c3ff,
+    #0072ff,
+    #ff0000,
+    #00ff00,
+    #ffff00
+  );
+  border-image-slice: 1;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.5); /* Add the black shadow here */
+  animation: gradientBorder 5s linear infinite alternate;
 }
+
+/* ... (rest of the styles) ... */
 
 /* Glassmorphism Effect */
 .glassmorphism {
@@ -155,4 +168,29 @@
 
 .text-yellow-500 {
   color: #ffff00;
+}
+
+/* animations */
+
+@keyframes gradientBorder {
+  0% {
+    border-image-source: linear-gradient(
+      45deg,
+      #00c3ff,
+      #0072ff,
+      #ff0000,
+      #00ff00,
+      #ffff00
+    );
+  }
+  100% {
+    border-image-source: linear-gradient(
+      45deg,
+      #ffff00,
+      #00ff00,
+      #ff0000,
+      #0072ff,
+      #00c3ff
+    );
+  }
 }
